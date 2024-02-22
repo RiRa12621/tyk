@@ -140,7 +140,7 @@ jobs:
              done
              docker manifest create ${tag} ${tag}-amd64 ${tag}-arm64 && docker manifest push ${tag}
           done
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: ${{ matrix.golang_cross == '1.21-bullseye' }}
         with:
           name: deb
@@ -148,7 +148,7 @@ jobs:
           path: |
             dist/*.deb
             !dist/*PAYG*.deb
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: ${{ matrix.golang_cross == '1.21-bullseye' }}
         with:
           name: rpm
@@ -247,7 +247,7 @@ jobs:
           fi
       - name: Archive Integration tests report
         if: ${{ always() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: api-test-report
           retention-days: 3
